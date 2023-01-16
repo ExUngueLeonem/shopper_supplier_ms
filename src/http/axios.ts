@@ -33,4 +33,12 @@ export class ConnectionManager {
             }
         );
     }
+
+    GetClient() {
+        return this.api;
+    }
+
+    static GetInstance() {
+        return this._instance ?? (this._instance = new ConnectionManager());
+    }
 }
