@@ -28,8 +28,8 @@ export default function AuthForm() {
           })}
 
           onSubmit={
-            (values) => { 
-              authStore.login(values).then(() => navigate("/main"))
+            (values) => {
+              authStore.login(values).then((res) => { if (res?.status === 200) navigate("/user") })
             }
           }
         >
