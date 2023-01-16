@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+// import logo from './logo.svg';
 import './App.css';
+import ConfigurationManager from './config';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AuthPage from './pages/AuthPage';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const [isInitialized, setIsInitialazed] = useState(false);
+  const [error, setError] = useState('');
+
+
+  useEffect(() => {
+    if (!isInitialized) {
+      ConfigurationManager.GetInstance()
+        .fetch()
+        .then(() => setIsInitialazed(true))
+        .catch(() => setError("Ошибка загрузки конфигурации"))
+    }
+  }, [isInitialized])
+
+  return !isInitialized || error ? (
+    <div>
+      Спиннер загрузки
     </div>
+  ) : (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AuthPage/>} />
+        <Route path="auth" element={<AuthPage/>} />
+      </Routes>
+    </BrowserRouter>
   );
+
 }
 
 export default App;
