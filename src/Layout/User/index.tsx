@@ -19,7 +19,7 @@ export default function User() {
     <div className="user-panel">
       <div className="user-info">
         <div className="user-info-name">
-          {authStore.user.userId}
+          {authStore.userInfo.name}
         </div>
         <div className="user-button">
           <button
