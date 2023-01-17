@@ -1,7 +1,7 @@
 import React from 'react'
 import Page from '../Layout/Page'
 
-export default function index() {
+export default function SupplierPage() {
     return (
         <Page>
             <div>index</div>
