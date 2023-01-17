@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { makeAutoObservable } from 'mobx';
 import { ConnectionManager } from '../http/axios';
-import { UserType } from '../types';
+import { UserInfoType, UserType } from '../types';
 
 
 
@@ -10,6 +10,14 @@ class AuthStore {
         userId: '',
         isSupplier: false,
     };
+
+    userInfo: UserInfoType = {
+        id: "",
+        name: "",
+        inn: "",
+        email: "",
+        phone: ""
+    }
 
     isAuth = false;
 
@@ -22,6 +30,10 @@ class AuthStore {
         console.log("AuthStore", this.user)
     }
 
+    setUserInfo(userInfo: UserInfoType) {
+        this.userInfo = userInfo
+    }
+
     setIsAuth(isAuth: boolean) {
         this.isAuth = isAuth;
     }
@@ -30,13 +42,13 @@ class AuthStore {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().post('/Account/Auth', { login, password })
             const { userId, isSupplier } = res.data
+            localStorage.setItem("token", res.data.token);
             this.setUser({ userId, isSupplier })
             this.setIsAuth(true);
-            localStorage.setItem("token", res.data.token);
             console.log("login res", res)
             return res
         } catch (error: any) {
-            if (error) this.arrCatch(error);
+            if (error) this.errorCatch(error);
         }
     }
 
@@ -47,7 +59,18 @@ class AuthStore {
         window.location.href = '/auth';
     }
 
-    arrCatch(error: AxiosError<any>) {
+    async getUserInfo() {
+        try {
+            let res = await ConnectionManager.GetInstance().GetClient().get('/user');
+            this.userInfo = res.data
+            // this.setUserInfo(res.data);
+            return res;
+        } catch (error: any) {
+            if (error) this.errorCatch(error);
+        }
+    }
+
+    errorCatch(error: AxiosError<any>) {
         if (error) {
             console.error("login", error.message)
         }
