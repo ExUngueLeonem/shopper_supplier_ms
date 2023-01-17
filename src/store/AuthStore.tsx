@@ -31,6 +31,7 @@ class AuthStore {
             let res = await ConnectionManager.GetInstance().GetClient().post('/Account/Auth', { login, password })
             const { userId, isSupplier } = res.data
             this.setUser({ userId, isSupplier })
+            this.setIsAuth(true);
             localStorage.setItem("token", res.data.token);
             console.log("login res", res)
             return res
@@ -40,9 +41,10 @@ class AuthStore {
     }
 
     async logout() {
-        console.log("logout");
         localStorage.removeItem('token');
         this.setIsAuth(false);
+        console.log("logout", this.isAuth, localStorage.getItem('token'));
+        window.location.href = '/auth';
     }
 
     arrCatch(error: AxiosError<any>) {

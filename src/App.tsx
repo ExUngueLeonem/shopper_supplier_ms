@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import logo from './logo.svg';
 import './App.scss';
 import ConfigurationManager from './config';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import AuthPage from './pages/AuthPage';
 
 import SupplierPage from './pages/SupplierPage';
@@ -13,12 +13,13 @@ import OutcomingOrderPage from './pages/OutcomingOrderPage';
 import CartPage from './pages/CartPage';
 import UserPage from './pages/UserPage';
 import AddressPage from './pages/AddressPage';
+import { observer } from 'mobx-react-lite';
+import { authStore } from './store/AuthStore';
 
 
 function App() {
   const [isInitialized, setIsInitialazed] = useState(false);
   const [error, setError] = useState('');
-
 
   useEffect(() => {
     if (!isInitialized) {
@@ -36,15 +37,15 @@ function App() {
   ) : (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AuthPage/>} />
-        <Route path="auth" element={<AuthPage/>} />
-        <Route path="user" element={<UserPage/>} />
-        <Route path="supplier" element={<SupplierPage/>} />
-        <Route path="nomenclature" element={<NomenclaturePage/>} />
-        <Route path="incomingOrder" element={<IncomingOrderPage/>} />
-        <Route path="outcomingOrder" element={<OutcomingOrderPage/>} />
-        <Route path="cart" element={<CartPage/>} />
-        <Route path="address" element={<AddressPage/>} />
+        <Route path="/" element={<AuthPage />} />
+        <Route path="auth" element={<AuthPage />} />
+        <Route path="user" element={<UserPage />} />
+        <Route path="supplier" element={<SupplierPage />} />
+        <Route path="nomenclature" element={<NomenclaturePage />} />
+        <Route path="incomingOrder" element={<IncomingOrderPage />} />
+        <Route path="outcomingOrder" element={<OutcomingOrderPage />} />
+        <Route path="cart" element={<CartPage />} />
+        <Route path="address" element={<AddressPage />} />
       </Routes>
     </BrowserRouter>
   );
@@ -58,4 +59,4 @@ function App() {
 
 }
 
-export default App;
+export default observer(App);

@@ -5,6 +5,8 @@ import { observer } from 'mobx-react-lite';
 import Menu, { RouteInfo } from "./Menu";
 import User from "./User";
 import "./Page.scss";
+import { authStore } from '../store/AuthStore';
+import { useNavigate } from 'react-router-dom';
 
 const pages: RouteInfo[] = [
   {
@@ -66,6 +68,11 @@ const Page = ({
   className?: string;
   routes?: RouteInfo[];
 }) => {
+
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (authStore.isAuth === false) navigate("/");
+  // })
 
   return (
     <>

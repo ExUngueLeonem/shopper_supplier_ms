@@ -10,8 +10,7 @@ export default function AuthProvider({ children }: Props) {
 
     const navigate = useNavigate();
 
-    if (authStore.isAuth) navigate("/auth")
+    if (authStore.isAuth) navigate("/auth");
 
-    return { children }
-
+    return { children };
 }

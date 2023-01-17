@@ -34,7 +34,8 @@ export default function AuthForm() {
           }
         >
           {
-            (props) => <>
+            (props) => 
+            <>
               <FormikForm>
                 <CustomTextField formikProps={{ ...props }} name={'login'} label={'Логин'} />
                 <CustomTextField formikProps={{ ...props }} name={'password'} label={'Пароль'} type={"password"} />
@@ -42,10 +43,8 @@ export default function AuthForm() {
                 <button type="submit" className={styles.submit_btn}>
                   Войти
                 </button>
-
               </FormikForm>
             </>
-
           }
         </Formik>
       </div>
