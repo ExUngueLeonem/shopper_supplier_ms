@@ -1,10 +1,23 @@
-import React from 'react'
+import { toJS } from 'mobx';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect } from 'react'
 import Page from '../Layout/Page'
+import { nomenclatureStore } from '../store/NomenclatureStore'
 
-export default function NomenclaturePage() {
+function NomenclaturePage() {
+    useEffect(() => {
+        nomenclatureStore.getNomenclatureBySearch();
+    }, [])
+
+    console.log("nomenclatureList", toJS(nomenclatureStore.nomenclatureList))
+
     return (
         <Page>
-            <div>index</div>
+            {nomenclatureStore.nomenclatureList.map(item => (
+                <div key={item.id}>{item.name}</div>
+            ))}
         </Page>
     )
 }
+
+export default observer(NomenclaturePage)
