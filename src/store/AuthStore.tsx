@@ -38,9 +38,9 @@ class AuthStore {
         this.isAuth = isAuth;
     }
 
-    async login({ login, password }: { login: string, password: string }) {
+    async login({ login, password, isPersistent }: { login: string, password: string, isPersistent: boolean }) {
         try {
-            let res = await ConnectionManager.GetInstance().GetClient().post('/Account/Auth', { login, password })
+            let res = await ConnectionManager.GetInstance().GetClient().post('/Account/Auth', { login, password, isPersistent })
             const { userId, isSupplier } = res.data
             localStorage.setItem("token", res.data.token);
             this.setUser({ userId, isSupplier })
@@ -60,14 +60,17 @@ class AuthStore {
     }
 
     async getUserInfo() {
-        try {
-            let res = await ConnectionManager.GetInstance().GetClient().get('/user');
-            this.userInfo = res.data
-            // this.setUserInfo(res.data);
-            return res;
-        } catch (error: any) {
-            if (error) this.errorCatch(error);
-        }
+        // setTimeout(async () => {
+
+            try {
+                let res = await ConnectionManager.GetInstance().GetClient().get('/user');
+                this.userInfo = res.data
+                // this.setUserInfo(res.data);
+                return res;
+            } catch (error: any) {
+                if (error) this.errorCatch(error);
+            }
+        // }, 200)
     }
 
     errorCatch(error: AxiosError<any>) {

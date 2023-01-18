@@ -14,6 +14,7 @@ export class ConnectionManager {
         })
         
         this.api.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("token")}`;
+        // this.api.defaults.headers.common['withCredentials'] = true;
 
         this.api.interceptors.response.use(
             (config) => {
@@ -35,10 +36,11 @@ export class ConnectionManager {
     }
 
     GetClient() {
+        this.api.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("token")}`;
         return this.api;
     }
 
     static GetInstance() {
         return this._instance ?? (this._instance = new ConnectionManager());
     }
-}
+} 

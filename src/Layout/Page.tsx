@@ -74,6 +74,12 @@ const Page = ({
   //   if (authStore.isAuth === false) navigate("/");
   // })
 
+  // useEffect(() => {
+  //   if (!authStore.userInfo.id && localStorage.getItem('token')) {
+  //     authStore.getUserInfo()
+  //   }
+  // }, [])
+
   return (
     <>
       {/* <ShowForm /> */}

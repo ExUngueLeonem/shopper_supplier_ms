@@ -20,6 +20,7 @@ export default function AuthForm() {
           initialValues={{
             login: '+79885515860',
             password: 'Flagman_123',
+            isPersistent: true,
           }}
 
           validationSchema={Yup.object().shape({
@@ -34,17 +35,27 @@ export default function AuthForm() {
           }
         >
           {
-            (props) => 
-            <>
-              <FormikForm>
-                <CustomTextField formikProps={{ ...props }} name={'login'} label={'Логин'} />
-                <CustomTextField formikProps={{ ...props }} name={'password'} label={'Пароль'} type={"password"} />
+            (props) => {
+              const {
+                values
+              } = props
 
-                <button type="submit" className={styles.submit_btn}>
-                  Войти
-                </button>
-              </FormikForm>
-            </>
+              console.log("form data values", values)
+              return (
+                <>
+                  <FormikForm>
+                    <CustomTextField formikProps={{ ...props }} name={'login'} label={'Логин'} />
+                    <CustomTextField formikProps={{ ...props }} name={'password'} label={'Пароль'} type={"password"} />
+
+                    <CustomTextField formikProps={{ ...props }} name={'isPersistent'} label={'Запомнить меня'} type={"checkbox"} />
+
+                    <button type="submit" className={styles.submit_btn}>
+                      Войти
+                    </button>
+                  </FormikForm>
+                </>
+              )
+            }
           }
         </Formik>
       </div>

@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 // import { useOidc, useOidcUser } from "@axa-fr/react-oidc";
 // import useController from "Hooks/useController";
@@ -7,7 +8,7 @@ import "./User.scss";
 
 // import authStore from '../../store/AuthStore';
 
-export default function User() {
+function User() {
   const nav = useNavigate();
   // const { logout } = useOidc();
   // const { oidcUser, oidcUserLoadingState } = useOidcUser();
@@ -31,3 +32,5 @@ export default function User() {
     </div>
   );
 }
+
+export default observer(User);

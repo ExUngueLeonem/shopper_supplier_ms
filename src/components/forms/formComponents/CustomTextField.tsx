@@ -9,12 +9,14 @@ export default function CustomTextField({
     withError = false,
     formikProps,
     type = "text",
+    checked = "false",
 }: {
     label: string;
     name: string;
     withError?: boolean;
     formikProps?: any;
-    type?: "text" | "number" | "password"
+    type?: "text" | "number" | "password" | "checkbox";
+    checked?: "true" | "false";
 }) {
 
     const {
@@ -24,20 +26,42 @@ export default function CustomTextField({
     } = formikProps
 
     return (
-        <div className={styles.field_wrapper}>
-            <div className={styles.label_wrapper}>
-                <label htmlFor={name}> {label} </label>
-            </div>
-            <div>
-                <Field name={name} placeholder={label} type={type} className={styles.text_field}/>
-            </div>
-            {withError &&
-                <>
-                    {errors[name] && touched[name] && (
-                        <div className={styles.input_feedback}>{errors[name]}</div>
-                    )}
-                </>
-            }
-        </div>
+        <>
+            {/* {type !== "checkbox" ? */}
+                <div className={styles.field_wrapper}>
+                    <div className={styles.label_wrapper}>
+                        <label htmlFor={name}> {label} </label>
+                    </div>
+                    <div>
+                        <Field name={name} placeholder={label} type={type} className={styles.text_field} />
+                    </div>
+                    {withError &&
+                        <>
+                            {errors[name] && touched[name] && (
+                                <div className={styles.input_feedback}>{errors[name]}</div>
+                            )}
+                        </>
+                    }
+                </div>
+                {/* :
+                <div className={styles.field_wrapper}>
+                    <div className={styles.label_wrapper}>
+                        <label htmlFor={name}> {label} </label>
+                    </div>
+                    <div>
+                        <Field name={name} placeholder={label} type={type} className={styles.text_field} checked={checked} value={}/>
+                    </div>
+                    {withError &&
+                        <>
+                            {errors[name] && touched[name] && (
+                                <div className={styles.input_feedback}>{errors[name]}</div>
+                            )}
+                        </>
+                    }
+                </div> */}
+            {/* } */}
+
+        </>
+
     )
 }
