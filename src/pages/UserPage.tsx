@@ -1,16 +1,40 @@
 import React, { useEffect } from 'react'
 import Page from '../Layout/Page'
 import { authStore } from '../store/AuthStore'
+import { userStore } from '../store/UserStore';
 
 export default function UserPage() {
 
     useEffect(() => {
-        authStore.getUserInfo();
+        userStore.getUserInfo();
     })
+
+    const {
+        id,
+        name,
+        inn,
+        email,
+        phone,
+    } = userStore.userInfo
 
     return (
         <Page>
             <div>index</div>
+            <div>
+                id {id}
+            </div>
+            <div>
+                name  {name}
+            </div>
+            <div>
+                inn  {inn}
+            </div>
+            <div>
+                email   {email}
+            </div>
+            <div>
+                phone  {phone}
+            </div>
         </Page>
     )
 }

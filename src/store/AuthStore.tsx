@@ -3,7 +3,7 @@ import { makeAutoObservable } from 'mobx';
 import { ConnectionManager } from '../http/axios';
 import { UserInfoType, UserType } from '../types';
 
-
+import { errorCatch } from './Error';
 
 class AuthStore {
     user: UserType = {
@@ -48,7 +48,7 @@ class AuthStore {
             console.log("login res", res)
             return res
         } catch (error: any) {
-            if (error) this.errorCatch(error);
+            if (error) errorCatch(error);
         }
     }
 
@@ -59,25 +59,25 @@ class AuthStore {
         window.location.href = '/auth';
     }
 
-    async getUserInfo() {
-        // setTimeout(async () => {
+    // async getUserInfo() {
+    //     // setTimeout(async () => {
 
-            try {
-                let res = await ConnectionManager.GetInstance().GetClient().get('/user');
-                this.userInfo = res.data
-                // this.setUserInfo(res.data);
-                return res;
-            } catch (error: any) {
-                if (error) this.errorCatch(error);
-            }
-        // }, 200)
-    }
+    //         try {
+    //             let res = await ConnectionManager.GetInstance().GetClient().get('/user');
+    //             this.userInfo = res.data
+    //             // this.setUserInfo(res.data);
+    //             return res;
+    //         } catch (error: any) {
+    //             if (error) errorCatch(error);
+    //         }
+    //     // }, 200)
+    // }
 
-    errorCatch(error: AxiosError<any>) {
-        if (error) {
-            console.error("login", error.message)
-        }
-    }
+    // errorCatch(error: AxiosError<any>) {
+    //     if (error) {
+    //         console.error("login", error.message)
+    //     }
+    // }
 }
 
 export const authStore = new AuthStore();
