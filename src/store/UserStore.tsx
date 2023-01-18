@@ -1,13 +1,9 @@
 import { makeAutoObservable } from 'mobx';
 import { ConnectionManager } from '../http/axios';
-import { UserInfoType, UserType } from '../types';
+import { UserInfoType, UserType, SupplierType } from '../types';
 import { errorCatch } from './Error';
 
 class UserStore {
-    user: UserType = {
-        userId: '',
-        isSupplier: false,
-    };
 
     userInfo: UserInfoType = {
         id: "",
@@ -17,38 +13,60 @@ class UserStore {
         phone: ""
     }
 
-    constructor() {
-        makeAutoObservable(this, {}, { autoBind: true })
+    currentSupplier: SupplierType = {
+        name: "",
+        address: "",
+        phone: "",
+        removed: false,
+        inn: "",
+        email: "",
+        description: "",
+        id: ""
     }
 
-    setUser(user: UserType) {
-        this.user = user;
-        console.log("AuthStore", this.user)
+    supplierList: SupplierType[] = [
+        {
+            name: "",
+            address: "",
+            phone: "",
+            removed: false,
+            inn: "",
+            email: "",
+            description: "",
+            id: ""
+        }
+    ]
+
+    constructor() {
+        makeAutoObservable(this, {}, { autoBind: true })
     }
 
     setUserInfo(userInfo: UserInfoType) {
         this.userInfo = userInfo
     }
 
-    async getUserInfo() {
-        // setTimeout(async () => {
-
-            try {
-                let res = await ConnectionManager.GetInstance().GetClient().get('/user');
-                this.userInfo = res.data
-                // this.setUserInfo(res.data);
-                return res;
-            } catch (error: any) {
-                if (error) errorCatch(error);
-            }
-        // }, 200)
+    setCurrentSupplier(currentSupplier: SupplierType) {
+        this.currentSupplier = currentSupplier
     }
 
-    async getCurrentSuplier() {
+    setSupplierList(supplierList: SupplierType[]) {
+        this.supplierList = supplierList
+    }
+
+    async getUserInfo() {
+        try {
+            let res = await ConnectionManager.GetInstance().GetClient().get('/user');
+            this.setUserInfo(res.data)
+            return res;
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
+    }
+
+    async getSuppliersList() {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().get('/suppliers');
-            this.suppliers = res.data
-            // this.setUserInfo(res.data);
+            this.setSupplierList(res.data)
             return res;
         } catch (error: any) {
             if (error) errorCatch(error);

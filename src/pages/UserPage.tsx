@@ -1,13 +1,14 @@
+import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react'
 import Page from '../Layout/Page'
 import { authStore } from '../store/AuthStore'
 import { userStore } from '../store/UserStore';
 
-export default function UserPage() {
+function UserPage() {
 
     useEffect(() => {
         userStore.getUserInfo();
-    })
+    }, [])
 
     const {
         id,
@@ -38,3 +39,5 @@ export default function UserPage() {
         </Page>
     )
 }
+
+export default observer(UserPage);
