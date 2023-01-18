@@ -11,14 +11,6 @@ class AuthStore {
         isSupplier: false,
     };
 
-    userInfo: UserInfoType = {
-        id: "",
-        name: "",
-        inn: "",
-        email: "",
-        phone: ""
-    }
-
     isAuth = false;
 
     constructor() {
@@ -28,10 +20,6 @@ class AuthStore {
     setUser(user: UserType) {
         this.user = user;
         console.log("AuthStore", this.user)
-    }
-
-    setUserInfo(userInfo: UserInfoType) {
-        this.userInfo = userInfo
     }
 
     setIsAuth(isAuth: boolean) {
@@ -59,25 +47,6 @@ class AuthStore {
         window.location.href = '/auth';
     }
 
-    // async getUserInfo() {
-    //     // setTimeout(async () => {
-
-    //         try {
-    //             let res = await ConnectionManager.GetInstance().GetClient().get('/user');
-    //             this.userInfo = res.data
-    //             // this.setUserInfo(res.data);
-    //             return res;
-    //         } catch (error: any) {
-    //             if (error) errorCatch(error);
-    //         }
-    //     // }, 200)
-    // }
-
-    // errorCatch(error: AxiosError<any>) {
-    //     if (error) {
-    //         console.error("login", error.message)
-    //     }
-    // }
 }
 
 export const authStore = new AuthStore();
