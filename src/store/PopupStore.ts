@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-type ShowPopupType = {
+interface IShowPopupType {
     formType:
     "" |
     "product" |
@@ -9,7 +9,7 @@ type ShowPopupType = {
 
 class PopupStore {
 
-    showPopup: ShowPopupType = {
+    showPopup: IShowPopupType = {
         formType: ""
     }
 
@@ -17,12 +17,12 @@ class PopupStore {
         makeAutoObservable(this, {}, { autoBind: true })
     }
 
-    setShowPopup(showPopup: ShowPopupType) {
-        this.showPopup = showPopup
+    setShowPopup(showPopup: IShowPopupType) {
+        this.showPopup = showPopup;
     }
 
     closeForm() {
-        this.setShowPopup({formType: ""})
+        this.setShowPopup({formType: ""});
     }
 
 }
