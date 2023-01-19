@@ -6,7 +6,7 @@ import { nomenclatureStore } from '../store/NomenclatureStore'
 
 function NomenclaturePage() {
     useEffect(() => {
-        nomenclatureStore.getNomenclatureBySearch();
+        nomenclatureStore.getNomenclatureBySearch({});
     }, [])
 
     console.log("nomenclatureList", toJS(nomenclatureStore.nomenclatureList))

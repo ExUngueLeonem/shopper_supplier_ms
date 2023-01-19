@@ -39,7 +39,7 @@ class NomenclatureStore {
         }
     }
 
-    async getNomenclatureBySearch(page?: number, count?: number) {
+    async getNomenclatureBySearch({ page, count }: { page?: number; count?: number }) {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog`, { params: { page, count } });
             this.setNomenclatureList(res.data);
