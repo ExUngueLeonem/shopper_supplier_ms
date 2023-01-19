@@ -86,3 +86,22 @@ export type CartItemType = {
     image: string | null;
     amount: number,
 }
+
+export type AddressesType = {
+    addresses: AddressItemType[];
+    default: string;
+    id: string;
+}
+
+export type AddressItemType = {
+    id: string;
+    city: string;
+    street: string;
+    house: string;
+    index: number | null;
+    building: string | null;
+    flat: string | null;
+    entrance: string | null;
+    floor: string | null;
+    doorPhone: string | null;
+}
