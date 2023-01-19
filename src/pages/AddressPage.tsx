@@ -1,10 +1,20 @@
-import React from 'react'
+import { observer } from 'mobx-react-lite';
+import React, { useEffect } from 'react'
+import AddressItem from '../components/AddressItem';
 import Page from '../Layout/Page'
+import { addressesStore } from '../store/AddressesStore'
 
-export default function AddressPage() {
+function AddressPage() {
+
+    useEffect(() => {
+        addressesStore.getAddresses();
+    }, [])
+
     return (
         <Page>
-            <div>index</div>
+            {addressesStore.addresses.addresses.map(item => <AddressItem key={item.id} item={item} />)}
         </Page>
     )
 }
+
+export default observer(AddressPage);
