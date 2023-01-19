@@ -20,7 +20,6 @@ function UserPage() {
 
     return (
         <Page>
-            <div>index</div>
             <div>
                 id {id}
             </div>
