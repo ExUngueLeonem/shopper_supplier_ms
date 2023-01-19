@@ -11,15 +11,10 @@ export interface IUserInfo {
     phone: string
 }
 
-export interface ISupplier {
-    name: string;
-    address: string;
-    phone: string;
+export interface ISupplier extends IUserInfo{
     removed: boolean;
-    inn: string;
-    email: string;
     description: string;
-    id: string;
+    address: string;
 }
 
 export interface ICatalogItem {
@@ -43,20 +38,17 @@ export interface IOrder {
     created: string;
     delivered: string | null;
     status: string;
-    customer: {
-        id: string;
-        name: string;
-        inn: string;
-        email: string;
-        phone: string;
-
-        address: IAddressItem;
-    },
+    customer: ICustomer;
     supplier: {
         id: string;
         name: string;
     }
 }
+
+interface ICustomer extends IUserInfo {
+    address: IAddressItem;
+}
+
 
 export interface ICart {
     id: string;
