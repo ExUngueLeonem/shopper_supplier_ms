@@ -62,9 +62,6 @@ export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => voi
                                     <button type="submit" className={classNames(styles.submit_btn, styles.form_btn)}>
                                         Сохранить
                                     </button>
-                                    <button type="submit" className={classNames(styles.form_btn)}>
-                                        Отмена
-                                    </button>
                                 </FormikForm>
                             </>
                         )
