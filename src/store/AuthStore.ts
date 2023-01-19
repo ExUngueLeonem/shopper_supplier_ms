@@ -1,12 +1,12 @@
 import { AxiosError } from 'axios';
 import { makeAutoObservable } from 'mobx';
 import { ConnectionManager } from '../http/axios';
-import { UserInfoType, UserType } from '../types';
+import { IUser } from '../types';
 
 import { errorCatch } from './Error';
 
 class AuthStore {
-    user: UserType = {
+    user: IUser = {
         userId: '',
         isSupplier: false,
     };
@@ -17,7 +17,7 @@ class AuthStore {
         makeAutoObservable(this, {}, { autoBind: true })
     }
 
-    setUser(user: UserType) {
+    setUser(user: IUser) {
         this.user = user;
         console.log("AuthStore", this.user)
     }

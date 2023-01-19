@@ -1,10 +1,10 @@
 import { makeAutoObservable } from "mobx";
 import { ConnectionManager } from "../http/axios";
-import { OrderType } from "../types";
+import { IOrder } from "../types";
 import { errorCatch } from "./Error";
 
 class OrderStore {
-    orderList: OrderType[] = [{
+    orderList: IOrder[] = [{
         id: "",
         number: 0,
         correlationOrderId: "",
@@ -35,7 +35,7 @@ class OrderStore {
         }
     }]
 
-    setOrderList(orderList: OrderType[]) {
+    setOrderList(orderList: IOrder[]) {
         this.orderList = orderList
     }
 

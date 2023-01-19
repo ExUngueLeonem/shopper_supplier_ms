@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { AddressItemType } from '../../types';
+import { IAddressItem } from '../../types';
 
-function AddressItem({item} : {item: AddressItemType}) {
+function AddressItem({item} : {item: IAddressItem}) {
 
     const {
         id,

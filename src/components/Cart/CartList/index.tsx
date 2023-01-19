@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { CartItemType } from '../../../types/';
+import { ICartItem } from '../../../types/';
 import CartItem from '../CartItem';
 
-function CartList({ item }: { item: CartItemType[] }) {
+function CartList({ item }: { item: ICartItem[] }) {
     return (
         <div>
             {item.map( cartItem => {

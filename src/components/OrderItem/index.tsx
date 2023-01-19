@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite'
-import React, { FC } from 'react'
-import { OrderType } from '../../types'
+import React from 'react'
+import { IOrder } from '../../types'
 
-function OrderItem({ item }: { item: OrderType }) {
+function OrderItem({ item }: { item: IOrder }) {
 
   const {
     id,

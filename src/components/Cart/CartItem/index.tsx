@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite'
 import React from 'react'
-import { CartItemType } from '../../../types'
+import { ICartItem } from '../../../types'
 
-function CartItem({ item }: { item: CartItemType }) {
+function CartItem({ item }: { item: ICartItem }) {
 
     const {
         id,

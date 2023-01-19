@@ -1,9 +1,9 @@
-export type UserType = {
+export interface IUser {
     userId: string;
     isSupplier: boolean;
 }
 
-export type UserInfoType = {
+export interface IUserInfo {
     id: string,
     name: string,
     inn: string,
@@ -11,7 +11,7 @@ export type UserInfoType = {
     phone: string
 }
 
-export type SupplierType = {
+export interface ISupplier {
     name: string;
     address: string;
     phone: string;
@@ -22,7 +22,7 @@ export type SupplierType = {
     id: string;
 }
 
-export type CatalogItemType = {
+export interface ICatalogItem {
     parent: string | null;
     name: string;
     description: string | null;
@@ -36,7 +36,7 @@ export type CatalogItemType = {
     id: string;
 }
 
-export type OrderType = {
+export interface IOrder {
     id: string;
     number: number;
     correlationOrderId: string;
@@ -49,17 +49,8 @@ export type OrderType = {
         inn: string;
         email: string;
         phone: string;
-        address: {
-            city: string;
-            street: string;
-            house: string;
-            index: number | null;
-            building: string | null;
-            flat: string | null;
-            entrance: string | null;
-            floor: string | null;
-            doorPhone: string | null;
-        }
+
+        address: IAddressItem;
     },
     supplier: {
         id: string;
@@ -67,18 +58,18 @@ export type OrderType = {
     }
 }
 
-export type CartType = {
+export interface ICart {
     id: string;
-    suppliers: CartSupplierType[]
+    suppliers: ICartSupplier[]
 }
 
-export type CartSupplierType = {
+export interface ICartSupplier {
     id: string;
     name: string;
-    items: CartItemType[]
+    items: ICartItem[]
 }
 
-export type CartItemType = {
+export interface ICartItem {
     id: string;
     name: string;
     price: number,
@@ -87,14 +78,14 @@ export type CartItemType = {
     amount: number,
 }
 
-export type AddressesType = {
-    addresses: AddressItemType[];
+export interface IAddresses {
+    addresses: IAddressItem[];
     default: string;
     id: string;
 }
 
-export type AddressItemType = {
-    id: string;
+export interface IAddressItem {
+    id?: string;
     city: string;
     street: string;
     house: string;

@@ -1,11 +1,11 @@
 import { makeAutoObservable } from "mobx";
 import { ConnectionManager } from "../http/axios";
-import { AddressesType } from "../types";
+import { IAddresses } from "../types";
 import { errorCatch } from "./Error";
 
 class AddressesStore {
 
-    addresses: AddressesType = {
+    addresses: IAddresses = {
         addresses: [
             {
                 id: "",
@@ -28,7 +28,7 @@ class AddressesStore {
         makeAutoObservable(this, {}, { autoBind: true })
     }
 
-    setAddresses(addresses: AddressesType) {
+    setAddresses(addresses: IAddresses) {
         this.addresses = addresses
     }
 

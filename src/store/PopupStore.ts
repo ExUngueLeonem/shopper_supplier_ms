@@ -1,7 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-import { ConnectionManager } from '../http/axios';
-import { CartType } from '../types';
-import { errorCatch } from './Error';
 
 type ShowPopupType = {
     formType:

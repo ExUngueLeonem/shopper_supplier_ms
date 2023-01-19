@@ -1,11 +1,11 @@
 import { makeAutoObservable } from 'mobx';
 import { ConnectionManager } from '../http/axios';
-import { CartType } from '../types';
+import { ICart } from '../types';
 import { errorCatch } from './Error';
 
 class CartStore {
 
-    cart: CartType = {
+    cart: ICart = {
         id: "",
         suppliers: [
             {
@@ -29,7 +29,7 @@ class CartStore {
         makeAutoObservable(this, {}, { autoBind: true })
     }
 
-    setCart(cart: CartType) {
+    setCart(cart: ICart) {
         this.cart = cart
     }
 

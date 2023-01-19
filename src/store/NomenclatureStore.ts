@@ -1,11 +1,11 @@
 import { makeAutoObservable } from "mobx";
 import { ConnectionManager } from "../http/axios";
-import { CatalogItemType } from "../types";
+import { ICatalogItem } from "../types";
 import { errorCatch } from "./Error";
 
 class NomenclatureStore {
 
-    nomenclatureList: CatalogItemType[] = [
+    nomenclatureList: ICatalogItem[] = [
         {
             parent: null,
             name: "",
@@ -25,7 +25,7 @@ class NomenclatureStore {
         makeAutoObservable(this, {}, { autoBind: true })
     }
 
-    setNomenclatureList(nomenclatureList: CatalogItemType[]) {
+    setNomenclatureList(nomenclatureList: ICatalogItem[]) {
         this.nomenclatureList = nomenclatureList
     }
 
@@ -47,8 +47,25 @@ class NomenclatureStore {
         } catch (error: any) {
             if (error) errorCatch(error);
         }
-
     }
+
+    // async createProduct({product: }) {
+    //     try {
+    //         // {
+    //         //     "name":"pizza 4 cshf",
+    //         //     "type":"product",
+    //         //     "description":"",
+    //         //     "measure":"шт",
+    //         //     "price":200
+    //         // }
+
+    //         let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog`, { params: { page, count } });
+    //         this.setNomenclatureList(res.data);
+    //         return res;
+    //     } catch (error: any) {
+    //         if (error) errorCatch(error);
+    //     }
+    // }
 
 
 }

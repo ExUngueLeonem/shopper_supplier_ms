@@ -1,11 +1,11 @@
 import { makeAutoObservable } from 'mobx';
 import { ConnectionManager } from '../http/axios';
-import { UserInfoType, UserType, SupplierType } from '../types';
+import { IUserInfo, ISupplier } from '../types';
 import { errorCatch } from './Error';
 
 class UserStore {
 
-    userInfo: UserInfoType = {
+    userInfo: IUserInfo = {
         id: "",
         name: "",
         inn: "",
@@ -13,7 +13,7 @@ class UserStore {
         phone: ""
     }
 
-    currentSupplier: SupplierType = {
+    currentSupplier: ISupplier = {
         name: "",
         address: "",
         phone: "",
@@ -24,7 +24,7 @@ class UserStore {
         id: ""
     }
 
-    supplierList: SupplierType[] = [
+    supplierList: ISupplier[] = [
         {
             name: "",
             address: "",
@@ -41,15 +41,15 @@ class UserStore {
         makeAutoObservable(this, {}, { autoBind: true })
     }
 
-    setUserInfo(userInfo: UserInfoType) {
+    setUserInfo(userInfo: IUserInfo) {
         this.userInfo = userInfo
     }
 
-    setCurrentSupplier(currentSupplier: SupplierType) {
+    setCurrentSupplier(currentSupplier: ISupplier) {
         this.currentSupplier = currentSupplier
     }
 
-    setSupplierList(supplierList: SupplierType[]) {
+    setSupplierList(supplierList: ISupplier[]) {
         this.supplierList = supplierList
     }
 
