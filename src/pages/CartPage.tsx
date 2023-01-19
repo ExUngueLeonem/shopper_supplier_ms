@@ -1,10 +1,20 @@
-import React from 'react'
+import { observer } from 'mobx-react-lite'
+import React, { useEffect } from 'react'
+import CartList from '../components/Cart/CartList'
 import Page from '../Layout/Page'
+import { cartStore } from '../store/CartStore'
 
-export default function CartPage() {
+function CartPage() {
+
+    useEffect(() => {
+        cartStore.getSuppliersList();
+    }, [])
+
     return (
         <Page>
-            <div>index</div>
+            {cartStore.cart.suppliers.map(supplier => <CartList key={supplier.id} item={supplier.items} />)}
         </Page>
     )
 }
+
+export default observer(CartPage)
