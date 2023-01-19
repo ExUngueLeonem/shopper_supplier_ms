@@ -49,23 +49,23 @@ class NomenclatureStore {
         }
     }
 
-    // async createProduct({product: }) {
-    //     try {
-    //         // {
-    //         //     "name":"pizza 4 cshf",
-    //         //     "type":"product",
-    //         //     "description":"",
-    //         //     "measure":"шт",
-    //         //     "price":200
-    //         // }
+    async createProduct({product } : {product: }) {
+        try {
+            // {
+            //     "name":"pizza 4 cshf",
+            //     "type":"product",
+            //     "description":"",
+            //     "measure":"шт",
+            //     "price":200
+            // }
 
-    //         let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog`, { params: { page, count } });
-    //         this.setNomenclatureList(res.data);
-    //         return res;
-    //     } catch (error: any) {
-    //         if (error) errorCatch(error);
-    //     }
-    // }
+            let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog`, { params: { page, count } });
+            this.setNomenclatureList(res.data);
+            return res;
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
+    }
 
 
 }
