@@ -7,6 +7,7 @@ import User from "./User";
 import "./Page.scss";
 import { authStore } from '../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
+import ShowForm from '../components/forms/ShowForm';
 
 const pages: RouteInfo[] = [
   {
@@ -84,6 +85,7 @@ const Page = ({
     <>
       {/* <ShowForm /> */}
       {/* <Message /> */}
+      <ShowForm/>
       <div className={`page ${className ?? ""}`}>
         <div className="navigation">
           <Menu pages={routes} logo={"AgroSale"} title={title} />
