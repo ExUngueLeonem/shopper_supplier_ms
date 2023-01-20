@@ -1,18 +1,14 @@
-import { Field, Form as FormikForm, Formik } from 'formik'
-import React, { useEffect } from 'react'
+import { Form as FormikForm, Formik } from 'formik'
 import CustomTextField from '../formComponents/CustomTextField';
 import classNames from 'classnames';
 
 import * as Yup from 'yup';
 
 import styles from '../forms.module.scss';
-import { authStore } from '../../../store/AuthStore';
-import { useNavigate } from 'react-router-dom';
 import FormWrapper from '../formComponents/FormWrapper';
-import { ICartItem, ICatalogItem } from '../../../types';
 import { popupStore } from '../../../store/PopupStore';
-import { nomenclatureStore } from '../../../store/NomenclatureStore';
-import { toJS } from 'mobx';
+import { changeTo } from '../../../script/scripts';
+import { ICatalogItem } from '../../../types';
 
 // interface Values {
 //     name: string;
@@ -40,19 +36,8 @@ export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => voi
                 initialValues={
                     popupStore.showPopup.initialFormData
                         ?
-
-                        toJS(popupStore.showPopup.initialFormData)
-                        // {
-                        //     name: "",
-                        //     type: "product",
-                        //     description: "",
-                        //     measure: "шт",
-                        //     price: 0,
-                        //     images: '',
-                        //     article: undefined,
-                        // }
+                        changeTo(popupStore.showPopup.initialFormData, '')
                         :
-
                         {
                             name: "",
                             type: "product",
@@ -80,7 +65,9 @@ export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => voi
                 //     password: Yup.string().trim().required("Обязательно к заполнению"),
                 // })}
 
-                onSubmit={(values) => { onSubmit(values) }}
+                onSubmit={(values: ICatalogItem) => {
+                    onSubmit(changeTo(values, null))
+                }}
             >
                 {
                     (props) => {

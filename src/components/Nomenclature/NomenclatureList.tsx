@@ -12,12 +12,7 @@ function NomenclatureList({ items }: Props) {
   return (
     <div className={styles.item_list}>
       {items?.map(item => (
-        <>
         <NomenclatureItem key={item.id} item={item} />
-        <NomenclatureItem key={item.id} item={item} />
-        <NomenclatureItem key={item.id} item={item} />
-
-        </>
       ))}
     </div>
   )
