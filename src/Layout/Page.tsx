@@ -16,12 +16,12 @@ const pages: RouteInfo[] = [
     // ],
   },
   { title: "Кабинет поставщика", path: "/supplier", },
-  { title: "Номенклатура", path: "/nomenclature" },
+  { title: "Мои адреса", path: "/address" },
+  { title: "Моя номенклатура", path: "/nomenclature" },
   { title: "Входящие заказы", path: "/incomingOrder" },
   { title: "Отправленные заказы", path: "/outcomingOrder" },
+  { title: "Каталог", path: "/catalog" },
   { title: "Корзина", path: "/cart" },
-  { title: "Мои адреса", path: "/address" },
-
 ];
 
 export type ButtonInfo = {
