@@ -1,0 +1,35 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+
+    border: 1px solid grey;
+}
+
+.item_list {
+    overflow-y: auto;
+    height: 100%;
+}
+
+.item_btn {
+    // display: block;
+    margin-left: 5px;
+
+    border-radius: 5px;
+    padding: 5px;
+}
+
+// .btn_wrapper {
+//     display: flex;
+// }
+
+.btn_change {
+    background-color: lightgreen;
+}
+
+.btn_delete {
+    background-color: lightsalmon;
+}
+
+.btn_restore {
+    background-color: lightblue;
+}

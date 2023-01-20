@@ -15,6 +15,7 @@ import UserPage from './pages/UserPage';
 import AddressPage from './pages/AddressPage';
 import { observer } from 'mobx-react-lite';
 import { authStore } from './store/AuthStore';
+import CatalogPage from './pages/CatalogPage';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path="outcomingOrder" element={<OutcomingOrderPage />} />
         <Route path="cart" element={<CartPage />} />
         <Route path="address" element={<AddressPage />} />
+        <Route path="catalog" element={<CatalogPage />} />
       </Routes>
     </BrowserRouter>
   );
