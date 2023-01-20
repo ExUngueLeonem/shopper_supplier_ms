@@ -13,7 +13,7 @@ function IncomingOrderPage() {
         <Page>
             {orderStore.orderList.length > 0 && orderStore.orderList[0].id ?
                 <>
-                    {orderStore.orderList.map(item => <OrderItem item={item} />)}
+                    {orderStore.orderList.map(item => <OrderItem item={item} key={item.id}/>)}
                 </>
                 :
                 <>
