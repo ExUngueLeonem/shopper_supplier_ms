@@ -30,6 +30,10 @@ class NomenclatureStore {
         this.nomenclatureList = nomenclatureList
     }
 
+    getNomenclatureItem(id: string) {
+        return this.nomenclatureList.find( item => item.id === id)
+    }
+
     async getNomenclatureBySupplier(supplierId: string) {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog/${supplierId}`);
@@ -60,6 +64,26 @@ class NomenclatureStore {
         }
     }
 
+    async updateProduct( product: ICatalogItem ) {
+        // {{url}}/catalog/{{supplierId}}
+        try {
+            let res = await ConnectionManager.GetInstance().GetClient().post(`/catalog/${userStore.currentSupplier.id}`,  product );
+            return res;
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
+    }
+
+    async deleteProduct( product: ICatalogItem ) {
+        // {{url}}/catalog/{{supplierId}}
+        try {
+            product.removed = false;
+            let res = await ConnectionManager.GetInstance().GetClient().post(`/catalog/${userStore.currentSupplier.id}`,  product );
+            return res;
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
+    }
 
 }
 

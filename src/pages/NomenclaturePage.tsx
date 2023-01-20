@@ -2,6 +2,7 @@ import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react'
 import ProductFrom from '../components/forms/ProductFrom/ProductFrom';
+import NomenclatureList from '../components/Nomenclature/NomenclatureList';
 import Page from '../Layout/Page'
 import { nomenclatureStore } from '../store/NomenclatureStore'
 import { popupStore } from '../store/PopupStore';
@@ -27,9 +28,7 @@ function NomenclaturePage() {
 
     return (
         <Page buttons={buttons}>
-            {nomenclatureStore.nomenclatureList?.map(item => (
-                <div key={item.id}>{item.name}</div>
-            ))}
+            <NomenclatureList items={nomenclatureStore.nomenclatureList}/>
         </Page>
     )
 }

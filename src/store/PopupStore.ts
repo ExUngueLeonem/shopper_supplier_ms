@@ -4,13 +4,15 @@ interface IShowPopupType {
     formType:
     "" |
     "product" |
-    "newProduct"
+    "newProduct",
+    initialFormData?: any;
 }
 
 class PopupStore {
 
     showPopup: IShowPopupType = {
-        formType: ""
+        formType: "",
+        initialFormData: {},
     }
 
     constructor() {
@@ -22,7 +24,7 @@ class PopupStore {
     }
 
     closeForm() {
-        this.setShowPopup({formType: ""});
+        this.setShowPopup({ formType: "" });
     }
 
 }

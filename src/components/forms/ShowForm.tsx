@@ -11,12 +11,10 @@ const ShowForm = () => {
 
     switch (formType) {
         case "newProduct": return <ProductFrom onSubmit={(values: ICatalogItem) => nomenclatureStore.createProduct(values)} />
-        case "product": return <ProductFrom onSubmit={() => { }} />
+        case "product": return <ProductFrom onSubmit={(values: ICatalogItem) => nomenclatureStore.updateProduct(values)} />
 
         default: return <></>
     }
-
-
 
 };
 

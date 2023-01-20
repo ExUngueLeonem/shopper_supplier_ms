@@ -1,5 +1,5 @@
 import { Field, Form as FormikForm, Formik } from 'formik'
-import React from 'react'
+import React, { useEffect } from 'react'
 import CustomTextField from '../formComponents/CustomTextField';
 import classNames from 'classnames';
 
@@ -10,6 +10,9 @@ import { authStore } from '../../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
 import FormWrapper from '../formComponents/FormWrapper';
 import { ICartItem, ICatalogItem } from '../../../types';
+import { popupStore } from '../../../store/PopupStore';
+import { nomenclatureStore } from '../../../store/NomenclatureStore';
+import { toJS } from 'mobx';
 
 // interface Values {
 //     name: string;
@@ -21,18 +24,56 @@ import { ICartItem, ICatalogItem } from '../../../types';
 
 export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => void }) {
 
+    let formInitialValues = {
+        name: "",
+        type: "product",
+        description: "",
+        measure: "шт",
+        price: 0,
+        images: '',
+        article: undefined,
+    }
+
     return (
         <FormWrapper>
             <Formik
-                initialValues={{
-                    name: "",
-                    type: "product",
-                    description: "",
-                    measure: "шт",
-                    price: 0,
-                    images: '',
-                    article: undefined,
-                }}
+                initialValues={
+                    popupStore.showPopup.initialFormData
+                        ?
+
+                        toJS(popupStore.showPopup.initialFormData)
+                        // {
+                        //     name: "",
+                        //     type: "product",
+                        //     description: "",
+                        //     measure: "шт",
+                        //     price: 0,
+                        //     images: '',
+                        //     article: undefined,
+                        // }
+                        :
+
+                        {
+                            name: "",
+                            type: "product",
+                            description: "",
+                            measure: "шт",
+                            price: 0,
+                            images: '',
+                            article: undefined,
+                        }
+                }
+
+                // initialValues={
+                //     {
+                //         name: "",
+                //         type: "product",
+                //         description: "",
+                //         measure: "шт",
+                //         price: 0,
+                //         images: '',
+                //         article: undefined,
+                //     }}
 
                 // validationSchema={Yup.object().shape({
                 //     login: Yup.string().trim().required("Обязательно к заполнению"),
