@@ -18,9 +18,30 @@
     padding: 5px;
 }
 
-// .btn_wrapper {
-//     display: flex;
-// }
+.amount_wrapper {
+    display: flex;
+    align-items: center;
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 25px;
+        height: 25px;
+        background-color: coral;
+
+        line-height: 0;
+    }
+
+    input {
+        margin: 0 5px;
+        width: 30px;
+    }
+}
+
+.btn_wrapper {
+    display: flex;
+}
 
 .btn_change {
     background-color: lightgreen;

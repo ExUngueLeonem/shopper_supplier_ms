@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite'
-import React from 'react'
+import React, { useState } from 'react'
+import { cartStore } from '../../store/CartStore';
 import { nomenclatureStore } from '../../store/NomenclatureStore';
 import { popupStore } from '../../store/PopupStore';
 import { ICatalogItem } from '../../types'
@@ -13,7 +14,17 @@ type Props = {
 
 function CatalogItem({ item }: Props) {
 
+  const [amount, setAmount] = useState(0);
+
+  const increment= () => {
+
+  }
   
+  const decrement = () => {    
+    setAmount((state) => {
+      return amount - 1
+    })
+  }
 
   return (
     <div key={item.id} className={styles.item} >
@@ -34,19 +45,32 @@ function CatalogItem({ item }: Props) {
       {item.type}
       {item.article}
       {item.price}
-      
-        <div className={styles.btn_wrapper}>
-          {item.removed ?? "Удален"}
-          <button
-            className={classNames(styles.item_btn, styles.btn_change)}
-            onClick={() => {}}
-          >
-            Добавить в корзину
-          </button>
 
+      <div className={styles.btn_wrapper}>
+        <div className={styles.amount_wrapper}>
+          <button onClick={() => decrement()}>
+            -
+          </button>
+          <input type="text" value={amount} />
+          <button onClick={() => increment()}>
+            +
+          </button>
         </div>
 
-      
+        <button
+          className={classNames(styles.item_btn, styles.btn_change)}
+          onClick={() => {
+            if (amount > 0) {
+              cartStore.addToCart(item.id, amount);
+              setAmount(0);
+            }
+          }}
+        >
+          Добавить в корзину
+        </button>
+      </div>
+
+
     </div>)
 }
 
