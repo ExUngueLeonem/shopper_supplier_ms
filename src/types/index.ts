@@ -28,7 +28,7 @@ export interface ICatalogItem {
     removed?: boolean;
     price?: number;
     supplierId?: string;
-    id?: string;
+    id: string;
 }
 
 export interface IOrder {
