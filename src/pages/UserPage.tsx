@@ -8,6 +8,7 @@ function UserPage() {
 
     useEffect(() => {
         userStore.getUserInfo();
+        userStore.getCurrentSupplier();
     }, [])
 
     const {
@@ -20,6 +21,11 @@ function UserPage() {
 
     return (
         <Page>
+
+            <>
+                User:
+            </>
+
             <div>
                 id {id}
             </div>
@@ -35,6 +41,31 @@ function UserPage() {
             <div>
                 phone  {phone}
             </div>
+
+
+
+
+        <>
+        <br />
+        <br />
+        Supplier:
+        </>
+
+        <>
+            <div>
+                {userStore.currentSupplier.name}
+            </div>
+            <div>
+                {userStore.currentSupplier.address}
+            </div>
+            <div>
+                {userStore.currentSupplier.phone}
+            </div>
+            <div>
+                {userStore.currentSupplier.inn}
+            </div>
+        </>
+
         </Page>
     )
 }

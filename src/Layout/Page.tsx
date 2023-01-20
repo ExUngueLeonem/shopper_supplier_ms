@@ -5,9 +5,8 @@ import { observer } from 'mobx-react-lite';
 import Menu, { RouteInfo } from "./Menu";
 import User from "./User";
 import "./Page.scss";
-import { authStore } from '../store/AuthStore';
-import { useNavigate } from 'react-router-dom';
 import ShowForm from '../components/forms/ShowForm';
+import { userStore } from '../store/UserStore';
 
 const pages: RouteInfo[] = [
   {
@@ -75,11 +74,10 @@ const Page = ({
   //   if (authStore.isAuth === false) navigate("/");
   // })
 
-  // useEffect(() => {
-  //   if (!authStore.userInfo.id && localStorage.getItem('token')) {
-  //     authStore.getUserInfo()
-  //   }
-  // }, [])
+  useEffect(() => {
+      userStore.getUserInfo();
+      userStore.getCurrentSupplier();
+  }, [])
 
   return (
     <>

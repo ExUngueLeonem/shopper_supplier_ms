@@ -11,6 +11,9 @@ function User() {
         <div className="user-info-name">
           {userStore.userInfo.name}
         </div>
+        <div className="user-info-name">
+          {userStore.currentSupplier.name}
+        </div>
         <div className="user-button">
           <button
             onClick={ () => authStore.logout() }
