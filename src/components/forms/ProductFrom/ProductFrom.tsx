@@ -9,14 +9,15 @@ import styles from '../forms.module.scss';
 import { authStore } from '../../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
 import FormWrapper from '../formComponents/FormWrapper';
+import { ICartItem, ICatalogItem } from '../../../types';
 
-interface Values {
-    name: string;
-    type: "product";
-    description: string;
-    measure: "шт";
-    price: number;
-}
+// interface Values {
+//     name: string;
+//     type: "product";
+//     description: string;
+//     measure: "шт";
+//     price: number;
+// }
 
 export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => void }) {
 
@@ -24,14 +25,13 @@ export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => voi
         <FormWrapper>
             <Formik
                 initialValues={{
-                    // login: '+79885515860',
-                    // password: 'Flagman_123',
-                    // isPersistent: true,
                     name: "",
                     type: "product",
                     description: "",
                     measure: "шт",
                     price: 0,
+                    images: '',
+                    article: undefined,
                 }}
 
                 // validationSchema={Yup.object().shape({
@@ -39,11 +39,7 @@ export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => voi
                 //     password: Yup.string().trim().required("Обязательно к заполнению"),
                 // })}
 
-                onSubmit={
-                    (values: Values) => {
-                        onSubmit(values)
-                    }
-                }
+                onSubmit={(values) => { onSubmit(values) }}
             >
                 {
                     (props) => {
@@ -58,6 +54,9 @@ export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => voi
                                     <CustomTextField formikProps={{ ...props }} name={'name'} label={'Название продукта'} />
                                     <CustomTextField formikProps={{ ...props }} name={'description'} label={'Описание продукта'} />
                                     <CustomTextField formikProps={{ ...props }} name={'price'} label={'Цена продукта'} type={"number"} />
+
+                                    <CustomTextField formikProps={{ ...props }} name={'images'} label={'Ссылка на изображение'} />
+                                    <CustomTextField formikProps={{ ...props }} name={'article'} label={'Артикул'} type={"number"} />
 
                                     <button type="submit" className={classNames(styles.submit_btn, styles.form_btn)}>
                                         Сохранить

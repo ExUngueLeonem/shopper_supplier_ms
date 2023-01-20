@@ -10,6 +10,8 @@ export default function CustomTextField({
     formikProps,
     type = "text",
     checked = "false",
+    min,
+    max,
 }: {
     label: string;
     name: string;
@@ -17,6 +19,8 @@ export default function CustomTextField({
     formikProps?: any;
     type?: "text" | "number" | "password" | "checkbox";
     checked?: "true" | "false";
+    min?: string;
+    max?: string;
 }) {
 
     const {
@@ -33,7 +37,7 @@ export default function CustomTextField({
                         <label htmlFor={name}> {label} </label>
                     </div>
                     <div>
-                        <Field name={name} placeholder={label} type={type} className={styles.text_field} />
+                        <Field name={name} placeholder={label} type={type} className={styles.text_field} min={min} max={max}/>
                     </div>
                     {withError &&
                         <>

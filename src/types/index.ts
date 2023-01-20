@@ -18,27 +18,27 @@ export interface ISupplier extends IUserInfo{
 }
 
 export interface ICatalogItem {
-    parent: string | null;
+    parent?: string;
     name: string;
-    description: string | null;
-    type: string;
     measure: string;
-    images: string | null;
-    article: number;
-    removed: boolean;
-    price: number;
-    supplierId: string;
-    id: string;
+    description?: string;
+    type?: string;
+    images?: string;
+    article?: number | null;
+    removed?: boolean;
+    price?: number;
+    supplierId?: string;
+    id?: string;
 }
 
 export interface IOrder {
     id: string;
-    number: number;
-    correlationOrderId: string;
-    created: string;
-    delivered: string | null;
-    status: string;
-    customer: ICustomer;
+    number?: number;
+    correlationOrderId?: string;
+    created?: string;
+    delivered?: string;
+    status?: string;
+    customer?: ICustomer;
     supplier: {
         id: string;
         name: string;
@@ -78,13 +78,13 @@ export interface IAddresses {
 
 export interface IAddressItem {
     id?: string;
-    city: string;
-    street: string;
-    house: string;
-    index: number | null;
-    building: string | null;
-    flat: string | null;
-    entrance: string | null;
-    floor: string | null;
-    doorPhone: string | null;
+    city?: string;
+    street?: string;
+    house?: string;
+    index?: number;
+    building?: string;
+    flat?: string;
+    entrance?: string;
+    floor?: string;
+    doorPhone?: string;
 }
