@@ -2,23 +2,24 @@ import { makeAutoObservable } from "mobx";
 import { ConnectionManager } from "../http/axios";
 import { ICatalogItem } from "../types";
 import { errorCatch } from "./Error";
+import { userStore } from "./UserStore";
 
 class NomenclatureStore {
 
     nomenclatureList: ICatalogItem[] = [
-        {
-            parent: null,
-            name: "",
-            description: null,
-            type: "",
-            measure: "",
-            images: null,
-            article: 0,
-            removed: false,
-            price: 0,
-            supplierId: "",
-            id: ""
-        }
+        // {
+        //     parent: "",
+        //     name: "",
+        //     description: "",
+        //     type: "",
+        //     measure: "",
+        //     images: "",
+        //     article: 0,
+        //     removed: false,
+        //     price: 0,
+        //     supplierId: "",
+        //     id: ""
+        // }
     ]
 
     constructor() {
@@ -49,18 +50,10 @@ class NomenclatureStore {
         }
     }
 
-    async createProduct({product } : {product: }) {
+    async createProduct( product: ICatalogItem ) {
+        // {{url}}/catalog/{{supplierId}}
         try {
-            // {
-            //     "name":"pizza 4 cshf",
-            //     "type":"product",
-            //     "description":"",
-            //     "measure":"шт",
-            //     "price":200
-            // }
-
-            let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog`, { params: { page, count } });
-            this.setNomenclatureList(res.data);
+            let res = await ConnectionManager.GetInstance().GetClient().post(`/catalog/${userStore.currentSupplier.id}`,  product );
             return res;
         } catch (error: any) {
             if (error) errorCatch(error);

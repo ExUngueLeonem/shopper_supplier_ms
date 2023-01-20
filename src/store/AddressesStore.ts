@@ -7,18 +7,18 @@ class AddressesStore {
 
     addresses: IAddresses = {
         addresses: [
-            {
-                id: "",
-                city: "",
-                street: "",
-                house: "",
-                index: null,
-                building: null,
-                flat: null,
-                entrance: null,
-                floor: null,
-                doorPhone: null,
-            }
+            // {
+            //     id: "",
+            //     city: "",
+            //     street: "",
+            //     house: "",
+            //     index: 0,
+            //     building: "",
+            //     flat: "",
+            //     entrance: "",
+            //     floor: "",
+            //     doorPhone: "",
+            // }
         ],
         default: "",
         id: "",
@@ -35,7 +35,7 @@ class AddressesStore {
     async getAddresses() {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().get('/address')
-            this.setAddresses( res.data)
+            this.setAddresses(res.data)
             return res
         } catch (error: any) {
             if (error) errorCatch(error);

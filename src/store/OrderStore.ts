@@ -9,7 +9,7 @@ class OrderStore {
         number: 0,
         correlationOrderId: "",
         created: "",
-        delivered: null,
+        delivered: "",
         status: "",
         customer: {
             id: "",
@@ -21,12 +21,12 @@ class OrderStore {
                 city: "",
                 street: "",
                 house: "",
-                index: null,
-                building: null,
-                flat: null,
-                entrance: null,
-                floor: null,
-                doorPhone: null
+                index: 0,
+                building: "",
+                flat: "",
+                entrance: "",
+                floor: "",
+                doorPhone: "",
             }
         },
         supplier: {

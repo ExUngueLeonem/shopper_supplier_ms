@@ -27,7 +27,7 @@ function NomenclaturePage() {
 
     return (
         <Page buttons={buttons}>
-            {nomenclatureStore.nomenclatureList.map(item => (
+            {nomenclatureStore.nomenclatureList?.map(item => (
                 <div key={item.id}>{item.name}</div>
             ))}
         </Page>
