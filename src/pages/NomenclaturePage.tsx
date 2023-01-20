@@ -6,10 +6,12 @@ import NomenclatureList from '../components/Nomenclature/NomenclatureList';
 import Page from '../Layout/Page'
 import { nomenclatureStore } from '../store/NomenclatureStore'
 import { popupStore } from '../store/PopupStore';
+import { userStore } from '../store/UserStore';
 
 function NomenclaturePage() {
+    
     useEffect(() => {
-        nomenclatureStore.fetchNomenclatureBySearch({});
+        nomenclatureStore.fetchNomenclatureBySupplier(userStore.currentSupplier.id);
     }, [])
 
     console.log("nomenclatureList", toJS(nomenclatureStore.nomenclatureList))

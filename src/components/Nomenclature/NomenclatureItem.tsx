@@ -8,10 +8,11 @@ import { ICatalogItem } from '../../types'
 import styles from './Nomenclature.module.scss';
 
 type Props = {
-  item: ICatalogItem
+  item: ICatalogItem;
+  readonly: boolean;
 }
 
-function NomenclatureItem({ item }: Props) {
+function NomenclatureItem({ item, readonly }: Props) {
   return (
     <div key={item.id} className={styles.item} >
       {/* 
@@ -31,33 +32,36 @@ function NomenclatureItem({ item }: Props) {
       {item.type}
       {item.article}
       {item.price}
-      <div className={styles.btn_wrapper}>
-        {item.removed ?? "Удален"}
-        <button
-          className={classNames(styles.item_btn, styles.btn_change)}
-          onClick={() => popupStore.setShowPopup({ formType: 'product', initialFormData: item })}
-        >
-          Изменить
-        </button>
+      {!readonly &&
+      
+        <div className={styles.btn_wrapper}>
+          {item.removed ?? "Удален"}
+          <button
+            className={classNames(styles.item_btn, styles.btn_change)}
+            onClick={() => popupStore.setShowPopup({ formType: 'product', initialFormData: item })}
+          >
+            Изменить
+          </button>
 
-        {/* 
+          {/* 
         <button
-          className={classNames(styles.item_btn, styles.btn_restore)}
-          onClick={() => { nomenclatureStore.restoreProduct(item) }}
+        className={classNames(styles.item_btn, styles.btn_restore)}
+        onClick={() => { nomenclatureStore.restoreProduct(item) }}
         >
-          Восстановить
+        Восстановить
         </button> 
-        */}
+      */}
 
-        <button
-          className={classNames(styles.item_btn, styles.btn_delete)}
-          onClick={() => { nomenclatureStore.deleteProduct(item) }}
-        >
-          Удалить
-        </button>
+          <button
+            className={classNames(styles.item_btn, styles.btn_delete)}
+            onClick={() => { nomenclatureStore.deleteProduct(item) }}
+          >
+            Удалить
+          </button>
 
-      </div>
+        </div>
 
+      }
     </div>)
 }
 

@@ -5,14 +5,15 @@ import NomenclatureItem from './NomenclatureItem';
 import styles from './Nomenclature.module.scss';
 
 type Props = {
-  items: ICatalogItem[]
+  items: ICatalogItem[];
+  readonly?: boolean;
 }
 
-function NomenclatureList({ items }: Props) {
+function NomenclatureList({ items, readonly = false }: Props) {
   return (
     <div className={styles.item_list}>
       {items?.map(item => (
-        <NomenclatureItem key={item.id} item={item} />
+        <NomenclatureItem key={item.id} item={item} readonly={readonly}/>
       ))}
     </div>
   )

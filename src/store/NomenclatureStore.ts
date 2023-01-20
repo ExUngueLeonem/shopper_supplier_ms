@@ -44,9 +44,9 @@ class NomenclatureStore {
         }
     }
 
-    async fetchNomenclatureBySearch({ page, count }: { page?: number; count?: number }) {
+    async fetchNomenclatureBySearch({ page, count, search }: { page?: number; count?: number, search?: string }) {
         try {
-            let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog`, { params: { page, count } });
+            let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog`, { params: { page, count, search } });
             this.setNomenclatureList(res.data);
             return res;
         } catch (error: any) {
