@@ -34,7 +34,7 @@ class NomenclatureStore {
         return this.nomenclatureList.find( item => item.id === id)
     }
 
-    async getNomenclatureBySupplier(supplierId: string) {
+    async fetchNomenclatureBySupplier(supplierId: string) {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog/${supplierId}`);
             this.setNomenclatureList(res.data);
@@ -44,7 +44,7 @@ class NomenclatureStore {
         }
     }
 
-    async getNomenclatureBySearch({ page, count }: { page?: number; count?: number }) {
+    async fetchNomenclatureBySearch({ page, count }: { page?: number; count?: number }) {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog`, { params: { page, count } });
             this.setNomenclatureList(res.data);
@@ -58,6 +58,7 @@ class NomenclatureStore {
         // {{url}}/catalog/{{supplierId}}
         try {
             let res = await ConnectionManager.GetInstance().GetClient().post(`/catalog/${userStore.currentSupplier.id}`,  product );
+            this.fetchNomenclatureBySearch({})
             return res;
         } catch (error: any) {
             if (error) errorCatch(error);
@@ -68,6 +69,7 @@ class NomenclatureStore {
         // {{url}}/catalog/{{supplierId}}
         try {
             let res = await ConnectionManager.GetInstance().GetClient().post(`/catalog/${userStore.currentSupplier.id}`,  product );
+            this.fetchNomenclatureBySearch({})
             return res;
         } catch (error: any) {
             if (error) errorCatch(error);
@@ -77,8 +79,21 @@ class NomenclatureStore {
     async deleteProduct( product: ICatalogItem ) {
         // {{url}}/catalog/{{supplierId}}
         try {
+            product.removed = true;
+            let res = await ConnectionManager.GetInstance().GetClient().post(`/catalog/${userStore.currentSupplier.id}`,  product );
+            this.fetchNomenclatureBySearch({})
+            return res;
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
+    }
+
+    async restoreProduct( product: ICatalogItem ) {
+        // {{url}}/catalog/{{supplierId}}
+        try {
             product.removed = false;
             let res = await ConnectionManager.GetInstance().GetClient().post(`/catalog/${userStore.currentSupplier.id}`,  product );
+            this.fetchNomenclatureBySearch({})
             return res;
         } catch (error: any) {
             if (error) errorCatch(error);

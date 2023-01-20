@@ -10,8 +10,8 @@ const ShowForm = () => {
     const { formType } = popupStore.showPopup
 
     switch (formType) {
-        case "newProduct": return <ProductFrom onSubmit={(values: ICatalogItem) => nomenclatureStore.createProduct(values)} />
-        case "product": return <ProductFrom onSubmit={(values: ICatalogItem) => nomenclatureStore.updateProduct(values)} />
+        case "newProduct": return <ProductFrom onSubmit={(values: ICatalogItem) : Promise<any> => nomenclatureStore.createProduct(values)} />
+        case "product": return <ProductFrom onSubmit={(values: ICatalogItem) : Promise<any> => nomenclatureStore.updateProduct(values)} />
 
         default: return <></>
     }

@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite'
 import React from 'react'
+import { nomenclatureStore } from '../../store/NomenclatureStore';
 import { popupStore } from '../../store/PopupStore';
 import { ICatalogItem } from '../../types'
 
@@ -30,15 +31,31 @@ function NomenclatureItem({ item }: Props) {
       {item.type}
       {item.article}
       {item.price}
-      {item.removed ?? "Удален"}
       <div className={styles.btn_wrapper}>
-        <button onClick={() => popupStore.setShowPopup({ formType: 'product', initialFormData: item })} className={classNames(styles.item_btn, styles.btn_change)}>
+        {item.removed ?? "Удален"}
+        <button
+          className={classNames(styles.item_btn, styles.btn_change)}
+          onClick={() => popupStore.setShowPopup({ formType: 'product', initialFormData: item })}
+        >
           Изменить
         </button>
 
-        <button onClick={() => { }} className={classNames(styles.item_btn, styles.btn_delete)}>
+        {/* 
+        <button
+          className={classNames(styles.item_btn, styles.btn_restore)}
+          onClick={() => { nomenclatureStore.restoreProduct(item) }}
+        >
+          Восстановить
+        </button> 
+        */}
+
+        <button
+          className={classNames(styles.item_btn, styles.btn_delete)}
+          onClick={() => { nomenclatureStore.deleteProduct(item) }}
+        >
           Удалить
         </button>
+
       </div>
 
     </div>)

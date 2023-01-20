@@ -18,7 +18,7 @@ import { ICatalogItem } from '../../../types';
 //     price: number;
 // }
 
-export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => void }) {
+export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => Promise<any> }) {
 
     let formInitialValues = {
         name: "",
@@ -49,17 +49,6 @@ export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => voi
                         }
                 }
 
-                // initialValues={
-                //     {
-                //         name: "",
-                //         type: "product",
-                //         description: "",
-                //         measure: "шт",
-                //         price: 0,
-                //         images: '',
-                //         article: undefined,
-                //     }}
-
                 // validationSchema={Yup.object().shape({
                 //     login: Yup.string().trim().required("Обязательно к заполнению"),
                 //     password: Yup.string().trim().required("Обязательно к заполнению"),
@@ -67,6 +56,7 @@ export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => voi
 
                 onSubmit={(values: ICatalogItem) => {
                     onSubmit(changeTo(values, null))
+                        .then(res => { if (res?.status === 200) popupStore.setShowPopup({ formType: '' }) })
                 }}
             >
                 {

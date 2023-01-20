@@ -9,7 +9,7 @@ import { popupStore } from '../store/PopupStore';
 
 function NomenclaturePage() {
     useEffect(() => {
-        nomenclatureStore.getNomenclatureBySearch({});
+        nomenclatureStore.fetchNomenclatureBySearch({});
     }, [])
 
     console.log("nomenclatureList", toJS(nomenclatureStore.nomenclatureList))
