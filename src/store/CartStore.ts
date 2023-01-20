@@ -11,16 +11,7 @@ class CartStore {
             {
                 id: "",
                 name: "",
-                items: [
-                    {
-                        id: "",
-                        name: "",
-                        price: 0,
-                        cost: 0,
-                        image: null,
-                        amount: 0
-                    }
-                ]
+                items: []
             }
         ]
     }
@@ -33,7 +24,7 @@ class CartStore {
         this.cart = cart
     }
 
-    async getSuppliersList() {
+    async getUserCart() {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().get('/basket');
             this.setCart(res.data)
@@ -42,6 +33,23 @@ class CartStore {
             if (error) errorCatch(error);
         }
     }
+
+
+    async addToCart( id: string, amount: number, ) {
+        try {
+            let res = await ConnectionManager.GetInstance().GetClient().post('/basket', { id, amount });
+            return res;
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
+    }
+
+
+    // {
+    //     "id": "6242da88-7062-408e-b845-6dc83e146a3f",
+    //     "supplierId": "{{supplierId}}",
+    //     "amount":3
+    // }
 
 }
 

@@ -7,7 +7,7 @@ import { cartStore } from '../store/CartStore'
 function CartPage() {
 
     useEffect(() => {
-        cartStore.getSuppliersList();
+        cartStore.getUserCart();
     }, [])
 
     return (
