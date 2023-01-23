@@ -9,6 +9,7 @@ import FormWrapper from '../formComponents/FormWrapper';
 import { popupStore } from '../../../store/PopupStore';
 import { changeTo } from '../../../script/scripts';
 import { ICatalogItem } from '../../../types';
+import { observer } from 'mobx-react-lite';
 
 // interface Values {
 //     name: string;
@@ -18,17 +19,7 @@ import { ICatalogItem } from '../../../types';
 //     price: number;
 // }
 
-export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => Promise<any> }) {
-
-    let formInitialValues = {
-        name: "",
-        type: "product",
-        description: "",
-        measure: "шт",
-        price: 0,
-        images: '',
-        article: undefined,
-    }
+function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => Promise<any> }) {
 
     return (
         <FormWrapper>
@@ -88,3 +79,5 @@ export default function ProductFrom({ onSubmit }: { onSubmit: (arg?: any) => Pro
         </FormWrapper>
     )
 }
+
+export default observer(ProductFrom);
