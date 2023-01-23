@@ -69,7 +69,7 @@ class NomenclatureStore {
         // {{url}}/catalog/{{supplierId}}
         try {
             let res = await ConnectionManager.GetInstance().GetClient().post(`/catalog/${userStore.currentSupplier.id}`,  product );
-            this.fetchNomenclatureBySearch({})
+            // this.fetchNomenclatureBySearch({})
             return res;
         } catch (error: any) {
             if (error) errorCatch(error);
@@ -81,7 +81,7 @@ class NomenclatureStore {
         try {
             product.removed = true;
             let res = await ConnectionManager.GetInstance().GetClient().post(`/catalog/${userStore.currentSupplier.id}`,  product );
-            this.fetchNomenclatureBySearch({})
+            // this.fetchNomenclatureBySearch({})
             return res;
         } catch (error: any) {
             if (error) errorCatch(error);
