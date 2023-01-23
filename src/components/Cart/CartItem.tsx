@@ -1,6 +1,10 @@
+import classNames from 'classnames';
 import { observer } from 'mobx-react-lite'
 import React from 'react'
+import { cartStore } from '../../store/CartStore';
 import { ICartItem } from '../../types'
+
+import styles from './Cart.module.scss';
 
 function CartItem({ item }: { item: ICartItem }) {
 
@@ -14,21 +18,28 @@ function CartItem({ item }: { item: ICartItem }) {
     } = item
 
     return (
-        <div>
-            <div>
-                name {name}
-            </div>
-            <div>
-                price {price}
-            </div>
-            <div>
-                cost {cost}
-            </div>
+        <div key={item.id} className={styles.item} >
+            name {name}
+            price {price}
+            cost {cost}
             <div>
                 image {image}
             </div>
             <div>
                 amount {amount}
+            </div>
+
+            <div className={styles.btn_wrapper}>
+
+                <button
+                    className={classNames(styles.item_btn, styles.btn_delete)}
+                    onClick={() => {
+                        cartStore.removeItemsFromCart([id])
+                    }}
+                >
+                    Удалить
+                </button>
+
             </div>
         </div>
     )

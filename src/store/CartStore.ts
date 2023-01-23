@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { ConnectionManager } from '../http/axios';
-import { ICart } from '../types';
+import { ICart, ICartItem } from '../types';
 import { errorCatch } from './Error';
 
 class CartStore {
@@ -35,7 +35,7 @@ class CartStore {
     }
 
 
-    async addToCart( id: string, amount: number, ) {
+    async addToCart(id: string, amount: number,) {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().post('/basket', { id, amount });
             return res;
@@ -44,12 +44,15 @@ class CartStore {
         }
     }
 
-
-    // {
-    //     "id": "6242da88-7062-408e-b845-6dc83e146a3f",
-    //     "supplierId": "{{supplierId}}",
-    //     "amount":3
-    // }
+    async removeItemsFromCart(items: string[]) {
+        try {
+            let res = await ConnectionManager.GetInstance().GetClient().delete('/basket', { data: items });
+            this.getUserCart();
+            return res;
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
+    }
 
 }
 
