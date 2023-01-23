@@ -4,7 +4,10 @@ interface IShowPopupType {
     formType:
     "" |
     "product" |
-    "newProduct",
+    "newProduct" |
+    "newOrder" 
+
+    ;
     initialFormData?: any;
 }
 
