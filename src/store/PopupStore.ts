@@ -5,10 +5,11 @@ interface IShowPopupType {
     "" |
     "product" |
     "newProduct" |
-    
-    "newAddress" |
 
-    "newOrder" 
+    "newAddress" |
+    "address" |
+
+    "newOrder"
 
     ;
     initialFormData?: any;
@@ -26,6 +27,7 @@ class PopupStore {
     }
 
     setShowPopup(showPopup: IShowPopupType) {
+        console.debug("showPopup", showPopup)
         this.showPopup = showPopup;
     }
 

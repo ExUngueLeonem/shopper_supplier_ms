@@ -19,6 +19,7 @@ const ShowForm = () => {
 
         case "newOrder": return <OrderForm onSubmit={(values) : Promise<any> => orderStore.createOrder(values)} />
 
+        case "address": return <AddressForm onSubmit={(values) : Promise<any> => addressesStore.updateAddress(values)} />
         case "newAddress": return <AddressForm onSubmit={(values) : Promise<any> => addressesStore.createAddress(values)} />
 
         default: return <></>

@@ -25,17 +25,20 @@ export default function AddressForm({ onSubmit }: { onSubmit: (arg?: any) => Pro
     <FormWrapper>
       <Formik
         initialValues={
-          {
-            city: "",
-            street: "",
-            house: "",
-            index: 0,
-            building: "",
-            flat: "",
-            entrance: "",
-            floor: "",
-            doorPhone: ""
-          }}
+          popupStore.showPopup.formType === 'address' ?
+            changeTo(popupStore.showPopup.initialFormData, '')
+            :
+            {
+              city: "",
+              street: "",
+              house: "",
+              index: 0,
+              building: "",
+              flat: "",
+              entrance: "",
+              floor: "",
+              doorPhone: ""
+            }}
         // validationSchema={Yup.object().shape({
         //     login: Yup.string().trim().required("Обязательно к заполнению"),
         //     password: Yup.string().trim().required("Обязательно к заполнению"),
@@ -53,7 +56,7 @@ export default function AddressForm({ onSubmit }: { onSubmit: (arg?: any) => Pro
           //  }
 
           onSubmit(changeTo(values, null))
-          .then(res => { if (res?.status === 200) popupStore.setShowPopup({ formType: '' }) })
+            .then(res => { if (res?.status === 200) popupStore.setShowPopup({ formType: '' }) })
         }}
       >
         {

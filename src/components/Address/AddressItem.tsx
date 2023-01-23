@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { addressesStore } from '../../store/AddressesStore';
+import { popupStore } from '../../store/PopupStore';
 import { IAddressItem } from '../../types';
 
 import styles from './Address.module.scss';
@@ -71,7 +72,10 @@ function AddressItem({ item }: { item: IAddressItem }) {
                 </td>
                 <td>
                     <div>
-                        <button className={classNames(styles.item_btn, styles.btn_change)}>
+                        <button 
+                        className={classNames(styles.item_btn, styles.btn_change)}
+                        onClick={() => popupStore.setShowPopup({formType: 'address', initialFormData: item})}
+                        >
                             Изменить
                         </button>
                     </div>

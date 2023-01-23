@@ -45,6 +45,7 @@ class AddressesStore {
     async updateAddress(address: IAddressItem) {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().post('/address', address)
+            this.setAddresses(res.data)
             return res
         } catch (error: any) {
             if (error) errorCatch(error);
