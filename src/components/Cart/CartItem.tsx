@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import React from 'react'
-import { ICartItem } from '../../../types'
+import { ICartItem } from '../../types'
 
 function CartItem({ item }: { item: ICartItem }) {
 
