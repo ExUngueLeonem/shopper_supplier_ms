@@ -17,12 +17,14 @@ function CatalogItem({ item }: Props) {
   const [amount, setAmount] = useState(0);
 
   const increment= () => {
-
+    setAmount((state) => {
+      return ++state
+    })
   }
   
   const decrement = () => {    
     setAmount((state) => {
-      return amount - 1
+      return state - 1
     })
   }
 
