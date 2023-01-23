@@ -1,3 +1,6 @@
+@import "/src/style/mixins";
+@import "/src/style/variables";
+
 .item {
     display: flex;
     justify-content: space-between;
@@ -11,11 +14,7 @@
 }
 
 .item_btn {
-    // display: block;
-    margin-left: 5px;
-
-    border-radius: 5px;
-    padding: 5px;
+    @include item_btn;
 }
 
 .btn_wrapper {
@@ -23,13 +22,13 @@
 }
 
 .btn_change {
-    background-color: lightgreen;
+    @include btn_change;
 }
 
 .btn_delete {
-    background-color: lightsalmon;
+    @include btn_delete;
 }
 
 .btn_restore {
-    background-color: lightblue;
+    @include btn_restore;
 }
