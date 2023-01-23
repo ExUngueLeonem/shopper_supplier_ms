@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { IAddressItem } from '../../types';
 
-function AddressItem({item} : {item: IAddressItem}) {
+function AddressItem({ item }: { item: IAddressItem }) {
 
     const {
         id,
@@ -46,6 +46,11 @@ function AddressItem({item} : {item: IAddressItem}) {
             <div>
                 doorPhone {doorPhone}
             </div>
+            <button
+                onClick={() => { }}
+            >
+                Изменить
+            </button>
         </div>
     );
 };
