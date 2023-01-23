@@ -83,6 +83,26 @@ class UserStore {
         }
     }
 
+    async createSupplier(supplier: ISupplier) {
+        try {
+            let res = await ConnectionManager.GetInstance().GetClient().post('suppliers', supplier);
+            this.setCurrentSupplier(res.data)
+            return res;
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
+    }
+
+    async updateSupplier(supplier: ISupplier) {
+        try {
+            let res = await ConnectionManager.GetInstance().GetClient().post('suppliers', supplier);
+            this.setCurrentSupplier(res.data)
+            return res;
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
+    }
+
 }
 
 export const userStore = new UserStore();
