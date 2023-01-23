@@ -6,8 +6,11 @@ interface IShowPopupType {
     "product" |
     "newProduct" |
 
-    "newAddress" |
     "address" |
+    "newAddress" |
+
+    "supplier" |
+    "newSupplier" |
 
     "newOrder"
 
