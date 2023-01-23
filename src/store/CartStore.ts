@@ -16,6 +16,18 @@ class CartStore {
         ]
     }
 
+    get itemsForOrder() {
+        let res = []
+
+        for (let supplier of this.cart.suppliers) {
+            for (let item of supplier.items) {
+                res.push({id: item.id, amount: item.amount, supplierId: supplier.id})
+            }
+        }
+
+        return res
+    }
+
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true })
     }

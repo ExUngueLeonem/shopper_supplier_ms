@@ -1,4 +1,4 @@
-import { Form as FormikForm, Formik } from 'formik'
+import { Field, Form as FormikForm, Formik } from 'formik'
 import CustomTextField from '../formComponents/CustomTextField';
 import classNames from 'classnames';
 
@@ -8,8 +8,12 @@ import styles from '../forms.module.scss';
 import FormWrapper from '../formComponents/FormWrapper';
 import { popupStore } from '../../../store/PopupStore';
 import { changeTo } from '../../../script/scripts';
-import { ICatalogItem, IOutcomingOrder } from '../../../types';
+import { IAddressItem, ICatalogItem, IOutcomingOrder } from '../../../types';
 import { userStore } from '../../../store/UserStore';
+import { cartStore } from '../../../store/CartStore';
+import { addressesStore } from '../../../store/AddressesStore';
+import { useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 
 // interface Values {
 //     name: string;
@@ -19,18 +23,11 @@ import { userStore } from '../../../store/UserStore';
 //     price: number;
 // }
 
+function OrderForm({ onSubmit }: { onSubmit: (arg?: any) => Promise<any> }) {
 
-export default function OrderForm({ onSubmit }: { onSubmit: (arg?: any) => Promise<any> }) {
-
-  let formInitialValues = {
-    name: "",
-    type: "product",
-    description: "",
-    measure: "шт",
-    price: 0,
-    images: '',
-    article: undefined,
-  }
+  useEffect(() => {
+    addressesStore.fetchAddresses()
+  }, [])
 
   return (
     <FormWrapper>
@@ -40,7 +37,7 @@ export default function OrderForm({ onSubmit }: { onSubmit: (arg?: any) => Promi
             comment: "",
             customerId: userStore.userInfo.id,
             customerAddressId: "",
-            items: []
+            items: cartStore.itemsForOrder
           }
         }
         // validationSchema={Yup.object().shape({
@@ -60,8 +57,8 @@ export default function OrderForm({ onSubmit }: { onSubmit: (arg?: any) => Promi
           //  }
 
 
-          // onSubmit(changeTo(values, null))
-          // .then(res => { if (res?.status === 200) popupStore.setShowPopup({ formType: '' }) })
+          onSubmit(changeTo(values, null))
+            .then(res => { if (res?.status === 200) popupStore.setShowPopup({ formType: '' }) })
         }}
       >
         {
@@ -75,7 +72,10 @@ export default function OrderForm({ onSubmit }: { onSubmit: (arg?: any) => Promi
               <>
                 <FormikForm>
                   <CustomTextField formikProps={{ ...props }} name={'comment'} label={'Комментарий к заказу'} />
-                  <CustomTextField formikProps={{ ...props }} name={'customerAddressId'} label={'Адрес'} />
+
+                  <Field as="select" name="customerAddressId">
+                    {addressesStore.addressesData.addresses.map((item: IAddressItem) => <option key={item.id} value={item.id}>{item.city}, {item.street}, {item.house}</option>)}
+                  </Field>
 
                   <button type="submit" className={classNames(styles.submit_btn, styles.form_btn)}>
                     Отправить
@@ -89,3 +89,5 @@ export default function OrderForm({ onSubmit }: { onSubmit: (arg?: any) => Promi
     </FormWrapper >
   )
 }
+
+export default observer(OrderForm)
