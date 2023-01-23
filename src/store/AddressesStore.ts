@@ -5,7 +5,7 @@ import { errorCatch } from "./Error";
 
 class AddressesStore {
 
-    addresses: IAddresses = {
+    addressesData: IAddresses = {
         addresses: [
             // {
             //     id: "",
@@ -28,11 +28,11 @@ class AddressesStore {
         makeAutoObservable(this, {}, { autoBind: true })
     }
 
-    setAddresses(addresses: IAddresses) {
-        this.addresses = addresses
+    setAddresses(addressesData: IAddresses) {
+        this.addressesData = addressesData
     }
 
-    async getAddresses() {
+    async fetchAddresses() {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().get('/address')
             this.setAddresses(res.data)
@@ -61,14 +61,15 @@ class AddressesStore {
         }
     }
 
-    async deleteAddress(id: string) {
+    async deleteAddress(id?: string) {
+        if (!id) return
         try {
             let res = await ConnectionManager.GetInstance().GetClient().delete('/address', { data: { id } })
             this.setAddresses(
                 {
-                    addresses: this.addresses.addresses.filter((item: IAddressItem) => item.id !== id),
-                    default: this.addresses.default,
-                    id: this.addresses.id,
+                    addresses: this.addressesData.addresses.filter((item: IAddressItem) => item.id !== id),
+                    default: this.addressesData.default,
+                    id: this.addressesData.id,
                 })
 
             return res

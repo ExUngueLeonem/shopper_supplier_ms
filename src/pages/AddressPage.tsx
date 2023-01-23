@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react'
-import AddressItem from '../components/AddressItem';
+import AddressList from '../components/Address/AddressList';
 import Page from '../Layout/Page'
 import { addressesStore } from '../store/AddressesStore'
 import { popupStore } from '../store/PopupStore';
@@ -8,7 +8,7 @@ import { popupStore } from '../store/PopupStore';
 function AddressPage() {
 
     useEffect(() => {
-        addressesStore.getAddresses();
+        addressesStore.fetchAddresses();
     }, [])
 
     const buttons = [
@@ -20,7 +20,7 @@ function AddressPage() {
 
     return (
         <Page buttons={buttons}>
-            {addressesStore.addresses.addresses.map(item => <AddressItem key={item.id} item={item} />)}
+            <AddressList/>
         </Page>
     )
 }
