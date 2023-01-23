@@ -39,7 +39,7 @@ function UserItem() {
 
             <button
                 className={classNames(styles.item_btn, styles.btn_change)}
-                onClick={() => popupStore.setShowPopup({ formType: 'supplier' })}
+                onClick={() => popupStore.setShowPopup({ formType: 'newSupplier' })}
             >
                 Стать поставщиком
             </button>

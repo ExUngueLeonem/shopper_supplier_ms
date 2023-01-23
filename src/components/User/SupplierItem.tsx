@@ -17,26 +17,36 @@ function SupplierItem() {
     return (
         <div>
             <>
-                Supplier:
+                Поставщик
             </>
 
             <>
                 <div>
-                    {userStore.currentSupplier.name}
+                   Имя {userStore.currentSupplier.name}
                 </div>
                 <div>
-                    {userStore.currentSupplier.address}
+                   id {userStore.currentSupplier.id}
                 </div>
                 <div>
-                    {userStore.currentSupplier.phone}
+                   Описание {userStore.currentSupplier.description}
                 </div>
                 <div>
-                    {userStore.currentSupplier.inn}
+                   Адрес {userStore.currentSupplier.address}
+                </div>
+                <div>
+                   Телефон {userStore.currentSupplier.phone}
+                </div>
+                <div>
+                   ИНН {userStore.currentSupplier.inn}
+                </div>
+                <div>
+                   Email {userStore.currentSupplier.email}
                 </div>
             </>
 
             <button
                 className={classNames(styles.item_btn, styles.btn_change)}
+                onClick={() => popupStore.setShowPopup({ formType: 'supplier', initialFormData: userStore.currentSupplier })}
             >
                 Изменить данные
             </button>
