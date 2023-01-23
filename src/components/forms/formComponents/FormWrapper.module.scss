@@ -27,4 +27,12 @@
     border-radius: 10px;
 
     background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form_title {
+    font-size: 1.2rem;
 }

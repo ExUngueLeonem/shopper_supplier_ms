@@ -1,9 +1,11 @@
 import { AxiosError } from 'axios';
 import { makeAutoObservable } from 'mobx';
 import { ConnectionManager } from '../http/axios';
-import { IUser } from '../types';
+import { IRegistrationValues, IUser } from '../types';
 
 import { errorCatch } from './Error';
+
+
 
 class AuthStore {
     user: IUser = {
@@ -45,6 +47,15 @@ class AuthStore {
         this.setIsAuth(false);
         console.log("logout", this.isAuth, localStorage.getItem('token'));
         window.location.href = '/auth';
+    }
+
+    async registration(values : IRegistrationValues) {
+        try {
+            let res = await ConnectionManager.GetInstance().GetClient().post('/Account',  values )
+            return res
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
     }
 
 }

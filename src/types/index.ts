@@ -3,6 +3,13 @@ export interface IUser {
     isSupplier: boolean;
 }
 
+export interface IRegistrationValues {
+    name: string;
+    phone: string;
+    email: string;
+    password: string;
+}
+
 export interface IUserInfo {
     id: string,
     name: string,
@@ -92,7 +99,7 @@ export interface IOutcomingOrder {
     comment: string;
     customerId: string;
     customerAddressId: string;
-    items: IOutcomingOrderItem[]  
+    items: IOutcomingOrderItem[]
 }
 
 export interface IOutcomingOrderItem {
