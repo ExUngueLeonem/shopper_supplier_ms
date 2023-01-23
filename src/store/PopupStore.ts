@@ -5,6 +5,9 @@ interface IShowPopupType {
     "" |
     "product" |
     "newProduct" |
+    
+    "newAddress" |
+
     "newOrder" 
 
     ;
