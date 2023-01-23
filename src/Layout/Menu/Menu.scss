@@ -1,6 +1,5 @@
-// See orig https://codepen.io/StephenScaff/pen/bVbEbJ
-
-$header_color: #67a342;
+@import "/src/style/mixins";
+@import "/src/style/variables";
 
 .sidebar {
   width: 17em;
