@@ -10,7 +10,7 @@
 
 .item_list {
     overflow-y: auto;
-    height: 100%;
+    height: calc(100vh - 120px);
 }
 
 .amount_wrapper {
@@ -53,4 +53,19 @@
 
 .btn_restore {
     @include btn_restore;
+}
+
+.search_panel {
+    display: flex;
+    align-items: center;
+
+    padding: 5px;
+}
+
+.search_title{
+
+}
+
+.search_panel_title {
+    padding: 5px;
 }
