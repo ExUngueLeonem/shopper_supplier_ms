@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { ConnectionManager } from "../http/axios";
 import { IOrder, IOutcomingOrder } from "../types";
+import { cartStore } from "./CartStore";
 import { errorCatch } from "./Error";
 
 class OrderStore {
@@ -58,10 +59,12 @@ class OrderStore {
     async createOrder(orderData: IOutcomingOrder) {
         try {
             let res = await ConnectionManager.GetInstance().GetClient().post(`/orders`, orderData);
+            await cartStore.removeItemsFromCart(cartStore.cartItemIdArr)
             return res;
         } catch (error: any) {
             if (error) errorCatch(error);
         }
-    }}
+    }
+}
 
 export const orderStore = new OrderStore();

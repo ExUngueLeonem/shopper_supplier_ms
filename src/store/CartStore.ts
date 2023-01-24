@@ -21,7 +21,19 @@ class CartStore {
 
         for (let supplier of this.cart.suppliers) {
             for (let item of supplier.items) {
-                res.push({id: item.id, amount: item.amount, supplierId: supplier.id})
+                res.push({ id: item.id, amount: item.amount, supplierId: supplier.id })
+            }
+        }
+
+        return res
+    }
+
+    get cartItemIdArr() {
+        let res = []
+
+        for (let supplier of this.cart.suppliers) {
+            for (let item of supplier.items) {
+                res.push(item.id)
             }
         }
 
