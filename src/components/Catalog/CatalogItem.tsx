@@ -16,13 +16,15 @@ function CatalogItem({ item }: Props) {
 
   const [amount, setAmount] = useState(0);
 
-  const increment= () => {
+  const increment = () => {
     setAmount((state) => {
       return ++state
     })
   }
-  
-  const decrement = () => {    
+
+  const decrement = () => {
+    if (amount <= 0) { setAmount(0); return; }
+
     setAmount((state) => {
       return state - 1
     })
@@ -53,7 +55,7 @@ function CatalogItem({ item }: Props) {
           <button onClick={() => decrement()}>
             -
           </button>
-          <input type="text" value={amount} />
+          <input min='0' type="number" value={amount} onChange={(e) => setAmount(+e.target.value)} />
           <button onClick={() => increment()}>
             +
           </button>
