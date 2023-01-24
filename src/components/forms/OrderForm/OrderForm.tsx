@@ -74,6 +74,7 @@ function OrderForm({ onSubmit }: { onSubmit: (arg?: any) => Promise<any> }) {
                   <CustomTextField formikProps={{ ...props }} name={'comment'} label={'Комментарий к заказу'} />
 
                   <Field as="select" name="customerAddressId">
+                    <option value={''}>-Выберите адрес-</option>
                     {addressesStore.addressesData.addresses.map((item: IAddressItem) => <option key={item.id} value={item.id}>{item.city}, {item.street}, {item.house}</option>)}
                   </Field>
 
