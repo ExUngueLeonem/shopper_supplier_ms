@@ -16,6 +16,7 @@ import AddressPage from './pages/AddressPage';
 import { observer } from 'mobx-react-lite';
 import { authStore } from './store/AuthStore';
 import CatalogPage from './pages/CatalogPage';
+import Test from './pages/test';
 
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
         <Route path="cart" element={<CartPage />} />
         <Route path="address" element={<AddressPage />} />
         <Route path="catalog" element={<CatalogPage />} />
+
+        <Route path="test" element={<Test />} />
+
       </Routes>
     </BrowserRouter>
   );

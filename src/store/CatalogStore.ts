@@ -54,6 +54,15 @@ class CatalogStore {
         }
     }
 
+    async fetchMoreItemsBySearch({ page, count, search }: { page?: number; count?: number, search?: string }) {
+        try {
+            let res = await ConnectionManager.GetInstance().GetClient().get(`/catalog`, { params: { page, count, search } });
+            this.setNomenclatureList([...this.nomenclatureList, res.data]);
+            return res;
+        } catch (error: any) {
+            if (error) errorCatch(error);
+        }
+    }
 }
 
 export const catalogStore = new CatalogStore();

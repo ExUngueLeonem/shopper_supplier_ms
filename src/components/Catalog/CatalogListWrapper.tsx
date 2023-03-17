@@ -13,6 +13,12 @@ function CatalogListWrapper() {
 
     //count=30&search=Конфеты&page=1
 
+    const searchConfig = {
+        search,
+        count,
+        page
+    }
+
     return (
         <div>
             <div>
@@ -44,14 +50,14 @@ function CatalogListWrapper() {
 
                     <button
                         className={classNames(styles.item_btn, styles.btn_change)}
-                        onClick={() => catalogStore.fetchNomenclatureBySearch({page, count, search })}
+                        onClick={() => catalogStore.fetchNomenclatureBySearch({ page, count, search })}
                     >
                         Найти
                     </button>
                 </div>
 
             </div>
-            <CatalogList items={catalogStore.nomenclatureList} />
+            <CatalogList items={catalogStore.nomenclatureList} searchConfig={searchConfig} />
         </div>
     )
 }
